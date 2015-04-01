@@ -244,7 +244,7 @@
       </transformation>
     </rule>
 
-    <rule id="OZEL_benim" phase="1">
+    <!--<rule id="OZEL_benim" phase="1">
       <description>
         ilgi hali, im şeklini alır. benim, bizim
       </description>
@@ -253,7 +253,7 @@
           <condition morpheme="Next" operator="MorphemeEquals" operand="IC_HAL_ILGI_(n)Un" />
         </conditions>
       </transformation>
-    </rule>
+    </rule>-->
 
     <rule id="OZEL_INCELME_A" phase="5">
       <description>	saat => saate özel durumu için yerleştirilen á karakteri sonradan a olur. </description>
@@ -287,24 +287,72 @@
       </transformation>
     </rule>
 
-    <rule id="OZEL_UYOR" phase="2">
-      <description>
-        Önceki ekin son harfi a veya e ise bu harfi sil.
-        Yok eğer Son harf ı,i,u,ü ise kendi ilk harfini (U) sil
-      </description>
-      <transformation morpheme="Previous" action="DeleteLastLetter">
-        <conditions flag="Or">
-          <condition morpheme="Previous" operator="LastLetterEquals" operand="ae" />
+    <rule id="OZEL_UYOR" phase="3">
+      <description>Fiiller için özel şimdik zaman kuralı.
+      Fiil a veya e seslileri ile bitiyorsa ve gelen ek şimdiki zaman eki ise
+      fiildeki bir önceki sesliye göre e->i, e->ü, a->ı, a->u dönüşümlerinden birini yap.
+      Örnek: ara + Uyor => arı + yor => arıyor
+    </description>
+      <transformation morpheme="This" action="Replace" operandOne="a" operandTwo="ı" flag="last">
+        <conditions flag="And">
+          <condition morpheme="This" operator="PenultVowelEquals" operand="aı" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
         </conditions>
       </transformation>
-      <transformation morpheme="This" action="DeleteFirstLetter">
-        <conditions flag="Or">
-          <condition morpheme="Previous" operator="LastLetterEquals" operand="ıiuü" />
+      <transformation morpheme="This" action="Replace" operandOne="a" operandTwo="u" flag="last">
+        <conditions flag="And">
+          <condition morpheme="This" operator="PenultVowelEquals" operand="ou" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
+        </conditions>
+      </transformation>
+      <transformation morpheme="This" action="Replace" operandOne="e" operandTwo="i" flag="last">
+        <conditions flag="And">
+          <condition morpheme="This" operator="PenultVowelEquals" operand="ei" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
+        </conditions>
+      </transformation>
+      <transformation morpheme="This" action="Replace" operandOne="e" operandTwo="ü" flag="last">
+        <conditions flag="And">
+          <condition morpheme="This" operator="PenultVowelEquals" operand="öü" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
         </conditions>
       </transformation>
     </rule>
 
-    <rule id="OZEL_de" phase="3">
+    <rule id="OZEL_OLUMSUZ_UYOR" phase="3">
+      <description>
+        Fiiller için özel şimdik zaman kuralı.
+        Fiil a veya e seslileri ile bitiyorsa ve gelen ek şimdiki zaman eki ise
+        fiildeki bir önceki sesliye göre e->i, e->ü, a->ı, a->u dönüşümlerinden birini yap.
+        Örnek: ara + Uyor => arı + yor => arıyor
+      </description>
+      <transformation morpheme="This" action="Replace" operandOne="a" operandTwo="ı" flag="last">
+        <conditions flag="And">
+          <condition morpheme="Previous" operator="LastVowelEquals" operand="aı" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
+        </conditions>
+      </transformation>
+      <transformation morpheme="This" action="Replace" operandOne="a" operandTwo="u" flag="last">
+        <conditions flag="And">
+          <condition morpheme="Previous" operator="LastVowelEquals" operand="ou" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
+        </conditions>
+      </transformation>
+      <transformation morpheme="This" action="Replace" operandOne="e" operandTwo="i" flag="last">
+        <conditions flag="And">
+          <condition morpheme="Previous" operator="LastVowelEquals" operand="ei" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
+        </conditions>
+      </transformation>
+      <transformation morpheme="This" action="Replace" operandOne="e" operandTwo="ü" flag="last">
+        <conditions flag="And">
+          <condition morpheme="Previous" operator="LastVowelEquals" operand="öü" />
+          <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
+        </conditions>
+      </transformation>
+    </rule>
+
+    <!--<rule id="OZEL_de" phase="3">
       <description>
         de fiili bazı eklerden sonra di halini alyor.
         de => di-yecek ama de-yip and de-yince
@@ -325,9 +373,9 @@
           <condition morpheme="Next" operator="FirstLetterEquals" operand="y" />
         </conditions>
       </transformation>
-    </rule>
+    </rule>-->
 
-    <rule id="OZEL_ye" phase="3">
+    <!--<rule id="OZEL_ye" phase="3">
       <description>
         ye fiili bazı eklerden sonra yi halini alyor.
         ye => yi-yecek, yi-yip and yi-yince
@@ -343,7 +391,7 @@
           <condition morpheme="Next" operator="MorphemeEquals" operand="FC_ZAMAN_SIMDIKI_(U)yor" />
         </conditions>
       </transformation>
-    </rule>
+    </rule>-->
 
     <!-- Bu 2 kural geniş zaman eki için -->
 
@@ -458,7 +506,7 @@
       </transformation>
     </rule>
 
-    <rule id="ZAMAN_kü" phase="1">
+    <!--<rule id="ZAMAN_kü" phase="1">
       <description>
         Yalnızca dün, gün ve bugün kelimelerinden sonra ki eki kü halini alır
       </description>
@@ -467,7 +515,7 @@
           <condition morpheme="Next" operator="MorphemeEquals" operand="IC_AITLIK_ki" />
         </conditions>
       </transformation>
-    </rule>
+    </rule>-->
 
 
     <!--<rule id="OKUNUSDAN_YAZILISA" phase="5">

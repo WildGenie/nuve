@@ -1314,7 +1314,7 @@ apukurya					ISIM	isim			din bilgisi	Rumca	Hayır
 ar					ISIM	isim				Fransızca	Hayır				
 ar					ISIM	isim				Arapça	Hayır				
 ara					ISIM	isim				Türkçe	Hayır				
-ara	arı				FIIL	fiil, geçişli					Hayır	E		Evet	
+ara	arı				FIIL	fiil, geçişli	OZEL_UYOR				Hayır	E		Evet	
 araba					ISIM	isim				Türkçe	Hayır				
 araban					ISIM	isim			müzik	Arapça	Hayır				
 Araban					OZEL	özel			ilçe	Arapça	Evet				

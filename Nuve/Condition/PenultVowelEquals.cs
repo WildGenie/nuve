@@ -10,8 +10,8 @@ namespace Nuve.Condition
 
         public override bool IsTrueFor(Allomorph allomorph)
         {
-            string neighbourSurface = allomorph.GetSurface(Position);
-            char? penultVowel = neighbourSurface.PenultimateOccurrenceOfAny(Alphabet.Vowels);
+            string surfaceAtPosition = allomorph.GetSurface(Position);
+            char? penultVowel = surfaceAtPosition.PenultimateOccurrenceOfAny(Alphabet.Vowels);
             return penultVowel.HasValue && Operand.IndexOf((char)penultVowel) != -1;
         }
     }

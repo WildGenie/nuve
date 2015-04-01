@@ -63,10 +63,10 @@ namespace Nuve.Gui
             //File.WriteAllLines(@"C:\Users\hrzafer\Dropbox\nuve\corpus\tcNormalizedTokenized.txt", tokens);
             //var test = TestGenerator.GenerateContainsAnalysisTest(SpecialCase.ZamirSoruNe, "ZamirSoruNeTest");
             //Console.WriteLine(test);
-            //Test();
+            Test();
 
             //Benchmarker.TestWithAMillionWords(Analyzer);
-            Benchmarker.TestWithAMillionTokens(Analyzer);
+            //Benchmarker.TestWithAMillionTokens(Analyzer);
 
             //AnaylzeWithCache(0);
 
@@ -89,18 +89,6 @@ namespace Nuve.Gui
             //}
 
 
-            try
-            {
-                Language language = new LanguageReader(@"C:\Users\hrzafer\Desktop\nuve-studio\lang\tr").Read();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            
-            
-
-            Test();
             //var solutions = Analyzer.Analyze("bunu");
             //foreach (var solution in solutions)
             //{
@@ -225,7 +213,7 @@ namespace Nuve.Gui
         {
             string[] testStrings =
             {
-                "sanatkaranedir","kitaplaştıramadıklarımızdanmışçasına"                                
+                "arıyor", "aramıyor"                                
             };
             //string[] testStrings = SoruTest.Soru;
            AnalysisHelper.Analyze(Analyzer, testStrings);
